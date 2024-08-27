@@ -1,10 +1,11 @@
 {
   "metadata": {
     "id": "VSoft.Messaging",
-    "version": "0.3.4",
+    "version": "0.3.8",
     "description": "VSoft.Messaging is a libary that provides an internal synchronous/asynchronous publish/subscribe messaging system for Delphi applications.",
     "authors": "Vincent Parrett",
-    "projectUrl": "https://github.com/VSoftTechnologies/VSoft.SemanticVersion",
+    "projectUrl": "https://github.com/VSoftTechnologies/VSoft.Messaging",
+    "repositoryUrl": "https://github.com/VSoftTechnologies/VSoft.Messaging",
     "license": "Apache-2.0",
     "copyright": "Vincent Parrett and contributors",
     "tags": "messaging publish subscribe"
@@ -74,17 +75,16 @@
       "compiler": "11.0",
       "platforms": "Win32, Win64",
       "template": "default"
+    },
+    {
+      "compiler": "12.0",
+      "platforms": "Win32, Win64",
+      "template": "12+"
     }
   ],
   "templates": [
     {
       "name": "default",
-      "dependencies": [
-        {
-          "id": "VSoft.WeakReference",
-          "version": "[0.1.2,]"
-        }
-      ],
       "source": [
         {
           "src": "src\\**\\*.pas",
@@ -108,6 +108,41 @@
         {
           "id": "Runtime",
           "project": ".\\packages\\Rad Studio $compilerWithCodeName$\\VSoft.MessagingR.dproj"
+        }
+      ],
+      "runtime" : [
+       {
+         "buildId" : "Runtime",
+         "src" : "bin\\VSoft.MessagingR$LibSuffix$.bpl",
+         "copyLocal" : true
+       }
+      ]
+    },
+    {
+      "name": "12+",
+      "source": [
+        {
+          "src": "src\\**\\*.pas",
+          "dest": "src"
+        },
+        {
+          "src": "packages\\Rad Studio $compilerNoPoint$\\VSoft.MessagingR.dpk",
+          "dest": "packages\\Rad Studio $compilerNoPoint$"
+        },
+        {
+          "src": "packages\\Rad Studio $compilerNoPoint$\\VSoft.MessagingR.dproj",
+          "dest": "packages\\Rad Studio $compilerNoPoint$"
+        }
+      ],
+      "searchPaths": [
+        {
+          "path": "src"
+        }
+      ],
+      "build": [
+        {
+          "id": "Runtime",
+          "project": ".\\packages\\Rad Studio $compilerNoPoint$\\VSoft.MessagingR.dproj"
         }
       ],
       "runtime" : [
